@@ -54,40 +54,24 @@ public class SocketController {
 
   }
 
-//  public void sendPostCreated(String correlationId, PostModel model) {
-//
-//    var message = gson.toJson(model);
-//    if (Objects.nonNull(correlationId) && sessions.containsKey(correlationId)) {
-//      logger.info("sent from " + correlationId);
-//
-//      sessions.get(correlationId).values()
-//          .forEach(session -> {
-//            try {
-//              session.getAsyncRemote().sendText(message);
-//            } catch (RuntimeException e){
-//              logger.log(Level.SEVERE, e.getMessage(), e);
-//            }
-//          });
-//    }
-//  }
-//
-//  public void sendCommentAdded(String correlationId, CommentModel model) {
-//
-//    var message = gson.toJson(model);
-//    System.out.println("before");
-//    if (Objects.nonNull(correlationId) && sessions.containsKey(correlationId)) {
-//      System.out.println("after");
-//      logger.info("sent from " + correlationId);
-//
-//      sessions.get(correlationId).values()
-//          .forEach(session -> {
-//            try {
-//              session.getAsyncRemote().sendText(message);
-//            } catch (RuntimeException e){
-//              logger.log(Level.SEVERE, e.getMessage(), e);
-//            }
-//          });
-//    }
+  public void sendModel(String correlationId, Object model) {
+
+    var message = gson.toJson(model);
+    if (Objects.nonNull(correlationId) && sessions.containsKey(correlationId)) {
+      logger.info("sent from " + correlationId);
+
+      sessions.get(correlationId).values()
+          .forEach(session -> {
+            try {
+              session.getAsyncRemote().sendText(message);
+            } catch (RuntimeException e){
+              logger.log(Level.SEVERE, e.getMessage(), e);
+            }
+          });
+    }
+  }
+
+
 
 
   }
